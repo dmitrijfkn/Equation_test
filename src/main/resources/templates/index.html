@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+
+    <style>
+        .error {
+            color: red;
+        }
+
+        table, tr, td {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=button], input[type=submit], input[type=reset], button {
+            background-color: #3a5ee0;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+<form action="/" method="get">
+    <input type="submit" value="Main page"/>
+</form>
+
+<form action="#" th:action="@{/}" th:object="${equationForm}" method="post">
+    <table>
+        <tr>
+            <td><h3>Equation:</h3></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" th:field="*{equation}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <p th:if="${#fields.hasErrors('equation')}" th:errorclass="error" th:errors="*{equation}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button type="submit">Check and save</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+<form action="/equations/all" method="get">
+    <input type="submit" value="See all equations"/>
+</form>
+
+<form action="/solutions/all" method="get">
+    <input type="submit" value="See all solutions"/>
+</form>
+
+</body>
+
+</html>
